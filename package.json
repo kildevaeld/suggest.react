@@ -1,0 +1,46 @@
+{
+    "name": "suggest",
+    "version": "0.0.1",
+    "main": "index.js",
+    "license": "MIT",
+    "sideEffects": false,
+    "typings": "./lib/index.d.ts",
+    "scripts": {
+        "test": "./node_modules/.bin/jest",
+        "start:dev": "webpack-dev-server",
+        "build": "node_modules/.bin/tsc; node_modules/.bin/rollup -c",
+        "clean": "rm -fr ./lib; rm -fr ./dist"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.9.6",
+        "@babel/preset-env": "^7.9.6",
+        "@babel/preset-react": "^7.9.4",
+        "@rollup/plugin-babel": "^5.0.0",
+        "@rollup/plugin-typescript": "^4.1.1",
+        "@testing-library/jest-dom": "^5.5.0",
+        "@testing-library/react": "^10.0.4",
+        "@types/jest": "^25.2.1",
+        "@types/react": "^16.9.34",
+        "@types/react-dom": "^16.9.7",
+        "@types/testing-library__jest-dom": "^5.0.3",
+        "html-webpack-plugin": "^4.3.0",
+        "jest": "^25.5.3",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-test-renderer": "^16.13.1",
+        "rollup": "^2.7.5",
+        "ts-jest": "^25.4.0",
+        "ts-loader": "^7.0.2",
+        "tslib": "^1.11.1",
+        "typescript": "^3.8.3",
+        "webpack": "^4.43.0",
+        "webpack-cli": "^3.3.11",
+        "webpack-dev-server": "^3.10.3"
+    },
+    "browserslist": "> 0.25%, not dead",
+    "peerDependencies": {
+        "react": "^16.13.1"
+    },
+    "browser": "./dist/suggest.js",
+    "module": "./dist/suggest.es6"
+}
