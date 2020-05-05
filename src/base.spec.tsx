@@ -27,7 +27,5 @@ test('SuggestBase', () => {
     expect(suggest.getByTestId("input")).toHaveValue("query");
     expect(onChange.mock.calls.length).toBe(1);
 
-    // expect(onChange.mock.calls[0][0]).toBe("query 2");
-
 
 });
