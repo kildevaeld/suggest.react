@@ -1,6 +1,6 @@
 {
-    "name": "suggest",
-    "version": "0.0.1",
+    "name": "@kildevaeld/suggest",
+    "version": "0.1.0",
     "main": "lib/index.js",
     "license": "MIT",
     "sideEffects": false,
@@ -9,9 +9,13 @@
         "test": "./node_modules/.bin/jest",
         "start:dev": "./node_modules/.bin/webpack-dev-server",
         "build": "node_modules/.bin/tsc; node_modules/.bin/rollup -c",
-        "clean": "rm -fr ./lib; rm -fr ./dist"
+        "clean": "rm -fr ./lib; rm -fr ./dist",
+        "prepare": "node_modules/.bin/tsc; node_modules/.bin/rollup -c",
+        "prepublishOnly": "node_modules/.bin/jest"
     },
-    "dependencies": {},
+    "dependencies": {
+        "use-scroll-lock": "^1.0.0"
+    },
     "devDependencies": {
         "@babel/core": "^7.9.6",
         "@babel/preset-env": "^7.9.6",
@@ -40,7 +44,8 @@
     },
     "browserslist": "> 0.25%, not dead",
     "peerDependencies": {
-        "react": "^16.13.1"
+        "react": "^16.13",
+        "react-dom": "^16.13"
     },
     "browser": "./dist/suggest.js",
     "module": "./dist/suggest.es6"
