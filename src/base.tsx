@@ -23,6 +23,7 @@ export interface BaseSuggestionInputProps {
         onKeyDown: React.KeyboardEventHandler<HTMLInputElement>
         onBlur?: (event: React.FocusEvent<HTMLInputElement>) => any,
         onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any,
+        placeholder?: string,
     }
     onClear: () => any;
 }
@@ -37,7 +38,7 @@ export interface BaseSuggestProps<T> {
     onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
     onSelect: (selected: T | undefined, index?: number) => any;
     onClear: () => any;
-
+    placeholder?: string;
     suggestions: T[];
     clearOnEscape?: boolean;
     children: (props: BaseSuggestSuggestionsProps<T>) => JSX.Element | null;
@@ -61,14 +62,14 @@ export const SuggestBase = forwardRef(function SuggestBase<T = any>(props: BaseS
         onSelect, clearOnEscape = false, onClear, onBlur, onFocus,
         suggestions, className, renderInput = _renderInput,
         showSuggestions = !!suggestions.length,
-        children, style, selected } = props;
+        children, style, selected, placeholder } = props;
 
     const inputProps: BaseSuggestionInputProps = {
         onClear,
         props: {
             value,
             onChange,
-            onFocus, onBlur,
+            onFocus, onBlur, placeholder,
             onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => {
                 switch (e.keyCode) {
                     case KeyCode.Up:
