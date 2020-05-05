@@ -1,5 +1,6 @@
-src/
+src
 jest.config.js
 rollup.config.js
 webpack.config.js
 tsconfig.json
+.babelrc
