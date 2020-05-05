@@ -13,6 +13,9 @@
         "prepare": "node_modules/.bin/tsc; node_modules/.bin/rollup -c",
         "prepublishOnly": "node_modules/.bin/jest"
     },
+    "author": {
+        "name": "Rasmus Kildevæld"
+    },
     "dependencies": {
         "use-scroll-lock": "^1.0.0"
     },
