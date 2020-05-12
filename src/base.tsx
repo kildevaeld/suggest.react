@@ -16,7 +16,7 @@ export interface BaseSuggestSuggestionsProps<T> {
     onSelect: (index: number) => any;
 }
 
-export interface SuggestionInputProps {
+export interface BaseSuggestionInputProps {
     props: {
         value: string;
         onChange: React.ChangeEventHandler<HTMLInputElement>,
@@ -47,13 +47,13 @@ export interface SuggestBaseProps<T> {
     // Finer grained config
     className?: string;
     style?: React.StyleHTMLAttributes<HTMLDivElement>
-    renderInput?: (props: SuggestionInputProps) => JSX.Element;
+    renderInput?: (props: BaseSuggestionInputProps) => JSX.Element;
     showSuggestions?: boolean;
 }
 
 
 
-function _renderInput({ props }: SuggestionInputProps) {
+function _renderInput({ props }: BaseSuggestionInputProps) {
     return <input {...props} data-testid="input" />
 }
 
@@ -68,7 +68,7 @@ export const SuggestBase = forwardRef(function SuggestBase<T = any>(props: Sugge
         showSuggestions = !!suggestions.length, autoFocus = false,
         children, style, selected, placeholder } = props;
 
-    const inputProps: SuggestionInputProps = {
+    const inputProps: BaseSuggestionInputProps = {
         onClear,
         props: {
             value,
