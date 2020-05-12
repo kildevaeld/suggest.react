@@ -1,12 +1,16 @@
 import React from 'react';
-import { BaseSuggestProps, SuggestBase, BaseSuggestSuggestionsProps } from "./base";
+import { SuggestBaseProps, SuggestBase, BaseSuggestSuggestionsProps } from "./base";
 import useScrollLock from 'use-scroll-lock';
 import { omit } from './util';
 import { createPortal } from 'react-dom';
 
-export interface SuggestProps<T> extends Omit<BaseSuggestProps<T>, 'children'> {
+export interface SuggestionsProps<T> extends BaseSuggestSuggestionsProps<T> {
     fullscreen: boolean;
-    children: (props: BaseSuggestSuggestionsProps<T> & { fullscreen: boolean }) => JSX.Element | null
+}
+
+export interface SuggestProps<T> extends Omit<SuggestBaseProps<T>, 'children'> {
+    fullscreen: boolean;
+    children: (props: SuggestionsProps<T>) => JSX.Element | null
     mount?: () => HTMLElement;
 }
 

@@ -16,7 +16,7 @@ export interface BaseSuggestSuggestionsProps<T> {
     onSelect: (index: number) => any;
 }
 
-export interface BaseSuggestionInputProps {
+export interface SuggestionInputProps {
     props: {
         value: string;
         onChange: React.ChangeEventHandler<HTMLInputElement>,
@@ -24,14 +24,16 @@ export interface BaseSuggestionInputProps {
         onBlur?: (event: React.FocusEvent<HTMLInputElement>) => any,
         onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any,
         placeholder?: string,
+        autoFocus?: boolean
     }
     onClear: () => any;
 }
 
-export interface BaseSuggestProps<T> {
+export interface SuggestBaseProps<T> {
     value: string;
     selected?: number;
     index: number;
+    autoFocus?: boolean;
     onIndex: (index: number) => any;
     onChange: React.ChangeEventHandler<HTMLInputElement>
     onBlur?: (event: React.FocusEvent<HTMLInputElement>) => any;
@@ -45,31 +47,34 @@ export interface BaseSuggestProps<T> {
     // Finer grained config
     className?: string;
     style?: React.StyleHTMLAttributes<HTMLDivElement>
-    renderInput?: () => JSX.Element;
+    renderInput?: (props: SuggestionInputProps) => JSX.Element;
     showSuggestions?: boolean;
 }
 
-function _renderInput({ props }: BaseSuggestionInputProps, ref?: Ref<HTMLDivElement>) {
+
+
+function _renderInput({ props }: SuggestionInputProps) {
     return <input {...props} data-testid="input" />
 }
 
 
-type SuggestBaseComponent = <T = any>(props: BaseSuggestProps<T> & React.RefAttributes<any>) => JSX.Element | null;
+type SuggestBaseComponent = <T = any>(props: SuggestBaseProps<T> & React.RefAttributes<any>) => JSX.Element | null;
 
-export const SuggestBase = forwardRef(function SuggestBase<T = any>(props: BaseSuggestProps<T>, ref: any) {
+export const SuggestBase = forwardRef(function SuggestBase<T = any>(props: SuggestBaseProps<T>, ref: any) {
 
     const { value, onChange, index, onIndex,
         onSelect, clearOnEscape = false, onClear, onBlur, onFocus,
         suggestions, className, renderInput = _renderInput,
-        showSuggestions = !!suggestions.length,
+        showSuggestions = !!suggestions.length, autoFocus = false,
         children, style, selected, placeholder } = props;
 
-    const inputProps: BaseSuggestionInputProps = {
+    const inputProps: SuggestionInputProps = {
         onClear,
         props: {
             value,
             onChange,
             onFocus, onBlur, placeholder,
+            autoFocus,
             onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => {
                 switch (e.keyCode) {
                     case KeyCode.Up:
